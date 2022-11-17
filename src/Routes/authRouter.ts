@@ -6,7 +6,8 @@ import signUpFormSchema from '../schemas/signUpFormSchema';
 
 const authRouter: Router = Router();
 
-authRouter.post('/signIn', validateSchemaMiddleware(signInFormSchema), authController.signIn);
-authRouter.post('/signUp', validateSchemaMiddleware(signUpFormSchema), authController.signUp);
+authRouter
+  .post('/signIn', validateSchemaMiddleware(signInFormSchema), authController.signIn)
+  .post('/signUp', validateSchemaMiddleware(signUpFormSchema), authController.signUp);
 
 export default authRouter;

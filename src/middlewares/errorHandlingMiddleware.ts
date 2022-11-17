@@ -22,6 +22,12 @@ export default function handleApplicationErrors(
     });
   }
 
+  if (err.name === 'UnprocessableEntity') {
+    return response.status(httpStatus.UNPROCESSABLE_ENTITY).send({
+      message: err.message,
+    });
+  }
+
   // eslint-disable-next-line no-console
   console.log(err);
   response.status(httpStatus.INTERNAL_SERVER_ERROR).send({

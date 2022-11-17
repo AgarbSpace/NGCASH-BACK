@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import httpStatus from 'http-status';
 import authService, { AuthParams } from '../services/authService';
 
 class AuthController {
@@ -11,12 +12,12 @@ class AuthController {
       const data: AuthParams = request.body;
       const userData = await authService.signIn(data);
       delete userData.user.password;
-      response.status(201).send(userData);
+      response.status(httpStatus.OK).send(userData);
     };
     this.signUp = async (request: Request, response: Response) => {
       const data: AuthParams = request.body;
       await authService.createUser(data);
-      response.status(200).send('User created successfuly');
+      response.status(httpStatus.CREATED).send('User created successfuly');
     };
   }
 }

@@ -25,14 +25,31 @@ async function findByUsername(username: string, select?: Prisma.UsersSelect) {
   return prisma.users.findUnique(params);
 }
 
+async function findById(id: number, select?: Prisma.UsersSelect) {
+  const params: Prisma.UsersFindUniqueArgs = {
+    where: {
+      id,
+    },
+  };
+
+  if (select) {
+    params.select = select;
+  }
+
+  return prisma.users.findUnique(params);
+}
+
 class UsersRepository {
   public create;
 
   public findByUsername;
 
+  public findById;
+
   constructor() {
     this.create = create;
     this.findByUsername = findByUsername;
+    this.findById = findById;
   }
 }
 

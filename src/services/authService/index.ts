@@ -6,7 +6,6 @@ import usersRepository from '../../repositories/usersRepository';
 import accountsRepository from '../../repositories/accountsRepository';
 import { duplicatedUsernameError, InvalidCredentialsError } from './errors';
 import exclude from '../../utils/prismaUtils';
-import sessionsRepository from '../../repositories/sessionsRepository';
 
 dotenv.config();
 
@@ -40,12 +39,7 @@ async function validatePasswordOrFail(password: string, userPassword: string) {
 }
 
 async function createSession(userId: number) {
-  const token = jwt.sign({ userId }, 'vcnuncavaisaber', { expiresIn: '3sec' });
-  await sessionsRepository.create({
-    token,
-    userId,
-  });
-
+  const token = jwt.sign({ userId }, 'vcnuncavaisaber', { expiresIn: '24h' });
   return token;
 }
 

@@ -17,8 +17,8 @@ model Transactions {
   id                Int      @id @default(autoincrement())
   debitedAccountId  Int
   creditedAccountId Int
-  value_            Decimal  @map("“value”") @db.Decimal(7, 2)
-  createdat_        DateTime @default(dbgenerated("CURRENT_DATE")) @map("“createdat”") @db.Date
+  value            Decimal  @map("“value”") @db.Decimal(7, 2)
+  createdAt        DateTime @default(dbgenerated("CURRENT_DATE")) @map("“createdat”") @db.Date
 }
 
 model Users {
@@ -27,14 +27,4 @@ model Users {
   password  String   @db.VarChar()
   accountId Int
   Accounts  Accounts @relation(fields: [accountId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  Sessions Sessions[]
-}
-
-model Sessions {
-  id Int @id @default(autoincrement())
-  userId Int @unique
-  Users Users @relation(fields: [userId], references: [id])
-  token String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
