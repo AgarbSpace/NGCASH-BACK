@@ -4,20 +4,20 @@ import { ApplicationError } from '../../protocols';
 export function notFoundError() :ApplicationError {
   return {
     name: 'NotFoundError',
-    message: 'Account not found',
+    message: 'Conta destinatária não encontrada',
   };
 }
 
 export function unprocessableEntity(): ApplicationError {
   return {
     name: 'UnprocessableEntity',
-    message: 'Value is bigger than your balance',
+    message: 'Valor a ser transferido é maior que o saldo',
   };
 }
 
 export function invalidCredentialsError(): ApplicationError {
   return {
     name: 'InvalidCredentialsError',
-    message: 'You cannot make a transaction for yourself',
+    message: 'Você não pode fazer transações para si mesmo',
   };
 }

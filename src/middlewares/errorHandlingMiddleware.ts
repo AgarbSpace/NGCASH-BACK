@@ -28,6 +28,12 @@ export default function handleApplicationErrors(
     });
   }
 
+  if (err.name === 'NotFoundError') {
+    return response.status(httpStatus.NOT_FOUND).send({
+      message: err.message,
+    });
+  }
+
   // eslint-disable-next-line no-console
   console.log(err);
   response.status(httpStatus.INTERNAL_SERVER_ERROR).send({

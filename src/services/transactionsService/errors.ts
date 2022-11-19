@@ -3,7 +3,7 @@ import { ApplicationError } from '../../protocols';
 export function notFoundError(username?:string) :ApplicationError {
   return {
     name: 'NotFoundError',
-    message: `User ${username} not found`,
+    message: `Usuário ${username} não encontrado`,
   };
 }
 
